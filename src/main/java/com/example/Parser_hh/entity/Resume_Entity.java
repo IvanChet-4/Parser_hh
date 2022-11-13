@@ -19,7 +19,6 @@ public class Resume_Entity {
     String email;
     String url_site;
     LocalDateTime local_time;
-
     String was_time;
 
     public Resume_Entity() {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All informations from pages</title>
+    <link rel="stylesheet" href="/assets/css/css_parse.css">
+</head>
+
+<body>
+
+<div class="all">
+    <h4>Таблица всех данных:</h4>
+    <br>
+    <div class="all" id="parseList"></div>
+    <br><br>
+</div>
+
+<script>
+    const parseList = document.getElementById("parseList");
+    fetch("/parse/all")
+        .then(response => response.json())
+        .then(result => {
+            result.forEach(item => {
+                const col = document.createElement('div');
+                col.classList.add("all");
+                const td = document.createElement('td');
+                td.innerText = item.id + " | " + "Name: " + item.name + " ; Surname: " + item.surname + " ; Age: " + item.age + " ; Phone number: " + item.phone + " ; Email: " + item.email+ " ; Position: " + item.position + " ; Web site resume: " + item.url_site + " ; Local Time: " + item.local_time + " ; Was Time: " + item.was_time;
+                col.append(td);
+
+                parseList.append(col);
+                console.log(item);
+
+            })
+        });
+
+</script>
+
+</body>
+
+</html>
