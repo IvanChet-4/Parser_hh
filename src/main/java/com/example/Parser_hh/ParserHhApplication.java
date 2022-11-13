@@ -8,17 +8,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ParserHhApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ParserHhApplication.class, args);
+
 		try {
 			Parse_Connect.startConnectForParse();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
 		}
-	}
 
 
 //	@GetMapping("/hello")
 //	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+//	LocalDateTime date = LocalDateTime.now();
+//        iter_variable.setLocal_time(date);
 //		String urlGif = "";
 //		try {
 //			urlGif = CurrencyParser.start();
@@ -28,4 +28,4 @@ public class ParserHhApplication {
 		//return "<div style = 'width:300px', align=center><img src='"+urlGif+"'></div>";
 	//}
 
-}
+}}

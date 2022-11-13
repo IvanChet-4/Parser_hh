@@ -13,13 +13,14 @@ public class Resume_Entity {
     int id;
     String name;
     String surname;
-    String patronymic;
     int age;
     String position;
     String phone;
     String email;
     String url_site;
     LocalDateTime local_time;
+
+    String was_time;
 
     public Resume_Entity() {
     }
@@ -46,14 +47,6 @@ public class Resume_Entity {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
     }
 
     public int getAge() {
@@ -102,5 +95,13 @@ public class Resume_Entity {
 
     public void setLocal_time(LocalDateTime local_time) {
         this.local_time = local_time;
+    }
+
+    public String getWas_time() {
+        return was_time;
+    }
+
+    public void setWas_time(String was_time) {
+        this.was_time = was_time;
     }
 }
