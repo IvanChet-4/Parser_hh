@@ -1,8 +1,6 @@
 package com.example.Parser_hh.constants;
 
 public interface Constants {
-   // String SITE_URL = "https://hh.ru/resumes/razrabotchik";//можно редактировать поисковый запрос razrabotchik
-
     //поисковый запрос разработчик = razrabotchik; фильтр чтобы выводить по 100 резюме
     String SITE_URL1 = "https://hh.ru/resumes/razrabotchik?area=1&clusters=true&exp_period=all_time&logic=normal&no_magic=true&order_by=relevance&ored_clusters=true&pos=full_text&text=разработчик&items_on_page=100&page=";
     String SITE_URL2 = "&hhtmFrom=resumes_catalog";
@@ -16,4 +14,5 @@ public interface Constants {
 
     //Тесты
     //String URL_R = "https://hh.ru/resume/05fe4e23ff0b0f3b960039ed1f43654d384572";
+    //String SITE_URL = "https://hh.ru/resumes/razrabotchik";//можно редактировать поисковый запрос razrabotchik
 }

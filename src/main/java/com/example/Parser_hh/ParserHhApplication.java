@@ -8,6 +8,5 @@ public class ParserHhApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ParserHhApplication.class, args);
-		//Parse_Connect.startProg();
 	}
 }

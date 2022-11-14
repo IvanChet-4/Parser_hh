@@ -28,7 +28,7 @@ public class Parse_Controller {
     private Resume_Repo resume_repo;
 
     @GetMapping("all")
-    public ResponseEntity getParsers (){
+    public ResponseEntity getParsers() {
         ArrayList<Resume_Entity> resume_entities = (ArrayList<Resume_Entity>) resume_repo.findAll();
         return ResponseEntity.ok(resume_entities);
     }
@@ -38,7 +38,7 @@ public class Parse_Controller {
 
         try {
             //j - номер страницы, на каждой странице отображено 100 резюме
-            for (int j = 0; j < 2; j++){
+            for (int j = 0; j < 2; j++) {
                 //открываем соединение с сайтом (в константе SITE_URL зашит поисковый запрос, который можно изменить)
                 URL url = new URL(SITE_URL1 + j + SITE_URL2);
 
@@ -118,11 +118,11 @@ public class Parse_Controller {
                             "\n dateNow = " + dateNow +
                             "\n Arrays.toString(wasTime) = " + Arrays.toString(wasTime));
                     //Results save
-                    resume_entity .setAge(ageOnPageResume);
-                    resume_entity .setPosition(listTagSpanForFindPosition);
-                    resume_entity .setUrl_site(siteWebPages);
-                    resume_entity .setLocal_time(dateNow);
-                    resume_entity .setWas_time(Arrays.toString(wasTime));
+                    resume_entity.setAge(ageOnPageResume);
+                    resume_entity.setPosition(listTagSpanForFindPosition);
+                    resume_entity.setUrl_site(siteWebPages);
+                    resume_entity.setLocal_time(dateNow);
+                    resume_entity.setWas_time(Arrays.toString(wasTime));
                     resume_repo.save(resume_entity);
 
 //       // resume_entity.setName(splitNameTagSpan[0]);
@@ -130,7 +130,8 @@ public class Parse_Controller {
 //       // resume_entity.setEmail(emailTagSpan);
 //       // resume_entity.setPhone(listTagSpanForFindPhone);
 
-                }}//циклы for
+                }
+            }//циклы for
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
