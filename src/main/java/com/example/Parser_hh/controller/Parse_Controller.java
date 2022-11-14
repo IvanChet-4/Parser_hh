@@ -34,22 +34,20 @@ public class Parse_Controller {
     }
 
     @PostMapping("add")
-    public String startParse(@ModelAttribute Resume_Entity resume_entity) {
+    public String startParse(@ModelAttribute ArrayList<Resume_Entity> resume_entity, @ModelAttribute Resume_Entity resume_entity_set) {
 
         try {
+
             //j - номер страницы, на каждой странице отображено 100 резюме
             for (int j = 0; j < 2; j++) {
+
                 //открываем соединение с сайтом (в константе SITE_URL зашит поисковый запрос, который можно изменить)
                 URL url = new URL(SITE_URL1 + j + SITE_URL2);
-
-                // System.out.println("url" + url);
-                //URLConnection connection = url.openConnection();
                 //находим ссылку на резюме и достаем необходимую ее часть
                 Document page = Jsoup.parse(url, 7000);
 
                 //i - можно поставить 100
                 for (int i = 0; i < 5; i++) {
-
                     Element listTagAForFindHref = page.select("a[class=serp-item__title]").get(i);//get(i)
                     String attrTagA = listTagAForFindHref.attr("href");
                     //System.out.println("listTagA = \n" + listTagA + "\n attrTagA = \n" + attrTagA);
@@ -112,24 +110,30 @@ public class Parse_Controller {
                     //  System.out.println(" \n DateNow = \n" + dateNow);
 
 
-                    System.out.println("ageOnPageResume = " + ageOnPageResume +
+                    System.out.println("\n ageOnPageResume = " + ageOnPageResume +
                             "\n listTagSpanForFindPosition = " + listTagSpanForFindPosition +
                             "\n siteWebPages = " + siteWebPages +
                             "\n dateNow = " + dateNow +
                             "\n Arrays.toString(wasTime) = " + Arrays.toString(wasTime));
-                    //Results save
-                    resume_entity.setAge(ageOnPageResume);
-                    resume_entity.setPosition(listTagSpanForFindPosition);
-                    resume_entity.setUrl_site(siteWebPages);
-                    resume_entity.setLocal_time(dateNow);
-                    resume_entity.setWas_time(Arrays.toString(wasTime));
-                    resume_repo.save(resume_entity);
 
+                    //Results save
+                    resume_entity_set.setAge(ageOnPageResume);
+                    resume_entity_set.setPosition(listTagSpanForFindPosition);
+                    resume_entity_set.setUrl_site(siteWebPages);
+                    resume_entity_set.setLocal_time(dateNow);
+                    resume_entity_set.setWas_time(Arrays.toString(wasTime));
+
+                    resume_entity.add(resume_entity_set);
+
+                    for (Resume_Entity item:resume_entity) {
+                        resume_repo.save(item);
+                    }
+
+         //без ключа блок с этими данными закрыт
 //       // resume_entity.setName(splitNameTagSpan[0]);
 //       // resume_entity.setSurname(splitNameTagSpan[1]);
 //       // resume_entity.setEmail(emailTagSpan);
 //       // resume_entity.setPhone(listTagSpanForFindPhone);
-
                 }
             }//циклы for
         } catch (IOException e) {
@@ -137,5 +141,4 @@ public class Parse_Controller {
         }
         return "БД обновлена";
     }
-
 }
