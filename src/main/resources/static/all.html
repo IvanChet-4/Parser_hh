@@ -3,37 +3,65 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>All informations from pages</title>
+    <title>All</title>
     <link rel="stylesheet" href="/assets/css/css_parse.css">
 </head>
 
 <body>
 
+<br>
 <div class="all">
+    <td>
+    <form name="all_bd" method="post" onsubmit = "location.reload(); return false">
+        <button type="submit">Обновить страницу All</button>
+    </form>
+
+    <br>
+    <form name="all_bd" method="post" onsubmit = "send_update(this); return false">
+        <button type="submit">Обновить БД</button>
+    </form>
+    <td>
+</div>
+
+<br><br>
+<div class="all_border">
     <h4>Таблица всех данных:</h4>
     <br>
-    <div class="all" id="parseList"></div>
+    <div class="all_border" id="parseList"></div>
     <br><br>
 </div>
 
-<script>
+    <script>
     const parseList = document.getElementById("parseList");
-    fetch("/parse/all")
+    fetch("/all")
         .then(response => response.json())
         .then(result => {
             result.forEach(item => {
                 const col = document.createElement('div');
-                col.classList.add("all");
+                col.classList.add("all_border");
                 const td = document.createElement('td');
+                td.classList.add("all_border");
                 td.innerText = item.id + " | " + "Name: " + item.name + " ; Surname: " + item.surname + " ; Age: " + item.age + " ; Phone number: " + item.phone + " ; Email: " + item.email+ " ; Position: " + item.position + " ; Web site resume: " + item.url_site + " ; Local Time: " + item.local_time + " ; Was Time: " + item.was_time;
-                col.append(td);
 
+                col.append(td);
                 parseList.append(col);
                 console.log(item);
 
             })
         });
+</script>
 
+<script>
+    function send_update(form) {
+        const formData = new FormData(form);
+        fetch('/add', {
+            method: "POST",
+            body: formData
+        }).then(response => response.text())
+            .then(result => {
+                console.log(result);
+            })
+    }
 </script>
 
 </body>
