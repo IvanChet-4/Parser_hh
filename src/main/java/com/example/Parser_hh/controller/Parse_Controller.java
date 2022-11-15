@@ -39,7 +39,7 @@ public class Parse_Controller {
         try {
 
             //j - номер страницы, на каждой странице отображено 100 резюме
-            for (int j = 0; j < 2; j++) {
+            for (int j = 0; j < Jtoe; j++) {
 
                 //открываем соединение с сайтом (в константе SITE_URL зашит поисковый запрос, который можно изменить)
                 URL url = new URL(SITE_URL1 + j + SITE_URL2);
@@ -47,7 +47,7 @@ public class Parse_Controller {
                 Document page = Jsoup.parse(url, 7000);
 
                 //i - можно поставить 100
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < Itoe; i++) {
                     Element listTagAForFindHref = page.select("a[class=serp-item__title]").get(i);//get(i)
                     String attrTagA = listTagAForFindHref.attr("href");
                     //System.out.println("listTagA = \n" + listTagA + "\n attrTagA = \n" + attrTagA);
@@ -127,7 +127,7 @@ public class Parse_Controller {
 
                     resume_entity.add(resume_entity_set);
 
-         //без ключа блок с этими данными закрыт
+                    //без ключа блок с этими данными закрыт
 //       // resume_entity.setName(splitNameTagSpan[0]);
 //       // resume_entity.setSurname(splitNameTagSpan[1]);
 //       // resume_entity.setEmail(emailTagSpan);
@@ -143,12 +143,11 @@ public class Parse_Controller {
     }
 
     private void startSave(ArrayList<Resume_Entity> resume_entity) {
-        for(int i = 0; i< resume_entity.size(); i++){
+        for (int i = 0; i < resume_entity.size(); i++) {
             resume_repo.save(resume_entity.get(i));
             //System.out.println( "\n get i \n" + resume_entity.get(i).toString());
         }
-        System.out.println("\n Сохранен \n" );
+        System.out.println("\n Сохранен \n");
     }
-
 
 }
