@@ -10,7 +10,7 @@ public interface Constants {
     String SITE_URL1 = "https://hh.ru/resumes/razrabotchik?page=";
     String SITE_URL2 = "&hhtmFrom=resumes_catalog";
 
-    int Jtoe = 10;//5 страниц
+    int Jtoe = 10;//10 страниц
     int Itoe = 20;// 20 резюме на странице
 
     //для открытия определенного резюме SITE_URL_ID + значение из атрибута href
