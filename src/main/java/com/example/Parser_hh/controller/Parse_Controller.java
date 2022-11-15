@@ -116,7 +116,9 @@ public class Parse_Controller {
                             "\n dateNow = " + dateNow +
                             "\n Arrays.toString(wasTime) = " + Arrays.toString(wasTime));
 
+
                     //Results save
+                    resume_entity_set = new Resume_Entity();
                     resume_entity_set.setAge(ageOnPageResume);
                     resume_entity_set.setPosition(listTagSpanForFindPosition);
                     resume_entity_set.setUrl_site(siteWebPages);
@@ -124,10 +126,6 @@ public class Parse_Controller {
                     resume_entity_set.setWas_time(Arrays.toString(wasTime));
 
                     resume_entity.add(resume_entity_set);
-
-                    for (Resume_Entity item:resume_entity) {
-                        resume_repo.save(item);
-                    }
 
          //без ключа блок с этими данными закрыт
 //       // resume_entity.setName(splitNameTagSpan[0]);
@@ -139,6 +137,18 @@ public class Parse_Controller {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        startSave(resume_entity);
         return "БД обновлена";
     }
+
+    private void startSave(ArrayList<Resume_Entity> resume_entity) {
+        for(int i = 0; i< resume_entity.size(); i++){
+            resume_repo.save(resume_entity.get(i));
+            //System.out.println( "\n get i \n" + resume_entity.get(i).toString());
+        }
+        System.out.println("\n Сохранен \n" );
+    }
+
+
 }
