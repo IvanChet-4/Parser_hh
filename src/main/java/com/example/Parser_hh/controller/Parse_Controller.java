@@ -125,19 +125,22 @@ public class Parse_Controller {
                     resume_entity_set.setLocal_time(dateNow);
                     resume_entity_set.setWas_time(Arrays.toString(wasTime));
 
+                    //без ключа блок с этими данными закрыт
+                    // resume_entity_set.setName(splitNameTagSpan[0]);
+                    // resume_entity_set.setSurname(splitNameTagSpan[1]);
+                    // resume_entity_set.setEmail(emailTagSpan);
+                    // resume_entity_set.setPhone(listTagSpanForFindPhone);
+
+                    //записываем результат
                     resume_entity.add(resume_entity_set);
 
-                    //без ключа блок с этими данными закрыт
-//       // resume_entity.setName(splitNameTagSpan[0]);
-//       // resume_entity.setSurname(splitNameTagSpan[1]);
-//       // resume_entity.setEmail(emailTagSpan);
-//       // resume_entity.setPhone(listTagSpanForFindPhone);
                 }
             }//циклы for
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        //сохраняем результат
         startSave(resume_entity);
         return "БД обновлена";
     }
@@ -149,5 +152,4 @@ public class Parse_Controller {
         }
         System.out.println("\n Сохранен \n");
     }
-
 }
