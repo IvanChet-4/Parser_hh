@@ -9,7 +9,6 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -38,32 +37,34 @@ public class Parse_Controller {
 
         try {
 
-            //j - номер страницы, на каждой странице отображено 100 резюме
+            // j - номер страницы, на каждой странице отображено 100 резюме
             for (int j = 0; j < Jtoe; j++) {
 
-                //открываем соединение с сайтом (в константе SITE_URL зашит поисковый запрос, который можно изменить)
+                // открываем соединение с сайтом (в константе SITE_URL зашит поисковый запрос, который можно изменить)
                 URL url = new URL(SITE_URL1 + j + SITE_URL2);
-                //находим ссылку на резюме и достаем необходимую ее часть
+
+                // находим ссылку на резюме и достаем необходимую ее часть
                 Document page = Jsoup.parse(url, 7000);
 
-                //i - можно поставить 100
+                // i - можно поставить 100
                 for (int i = 0; i < Itoe; i++) {
+
                     Element listTagAForFindHref = page.select("a[class=serp-item__title]").get(i);//get(i)
                     String attrTagA = listTagAForFindHref.attr("href");
-                    //System.out.println("listTagA = \n" + listTagA + "\n attrTagA = \n" + attrTagA);
+                    // System.out.println("listTagA = \n" + listTagA + "\n attrTagA = \n" + attrTagA);
                     String[] splitAttrTagA = attrTagA.split("/");
                     String[] splitResult0 = splitAttrTagA[2].split("\\?");
-                    //System.out.println(" split attrTagA = \n" + Arrays.toString(splitResult0));
+                    // System.out.println(" split attrTagA = \n" + Arrays.toString(splitResult0));
 
-                    //открываем резюме get(i); urlID - страница резюме
+                    // открываем резюме get(i); urlID - страница резюме
                     URL urlID = new URL(SITE_URL_ID + splitResult0[0]);
                     String siteWebPages = SITE_URL_ID + splitResult0[0];
                     System.out.println("\n KeyWebPagesResume = " + siteWebPages);
-                    //URL urlID = new URL(URL_R);
-                    //URLConnection connectionID = urlID.openConnection();
+                    // URL urlID = new URL(URL_R);
+                    // URLConnection connectionID = urlID.openConnection();
                     Document pageID = Jsoup.parse(urlID, 7000);
 
-                    //was
+                    // was
                     String[] wasTime = new String[0];
                     String listTagDivForFindWas = pageID.select("div[class=resume-online-status]").text();
                     if (!listTagDivForFindWas.isEmpty()) {
@@ -71,7 +72,7 @@ public class Parse_Controller {
                         // System.out.println("\n WasTime = " + Arrays.toString(wasTime));
                     }
 
-                    //age
+                    // age
                     int ageOnPageResume = 0;
                     Elements listTagSpanForFindAge = pageID.select("span[data-qa=resume-personal-age]");
                     if (!listTagSpanForFindAge.isEmpty()) {
@@ -81,35 +82,35 @@ public class Parse_Controller {
                         // System.out.println("\n age = \n" + ageOnPageResume);
                     }
 
-                    //position
+                    // position
                     String listTagSpanForFindPosition = pageID.select("span[data-qa=resume-block-title-position]").text();
                     if (!listTagSpanForFindPosition.isEmpty()) {
-                        //System.out.println("\n Position = \n" + listTagSpanForFindPosition);
+                        // System.out.println("\n Position = \n" + listTagSpanForFindPosition);
                     }
 
 /////////////////////////////////////////////
-                    //name
+                    // name
 //        Elements listTagSpanForFindName = pageID.select("h2[data-qa=resume-personal-name]");
 //        String nameTagSpan = listTagSpanForFindName.select("span").text();
 //        String[] splitNameTagSpan = nameTagSpan.split(" ");
 //        String splitNameTagSpan0 = splitNameTagSpan[0];
 //        System.out.println("\n splitNameTagSpan0 = \n" + splitNameTagSpan0);
 //        System.out.println(listTagSpanForFindName);
-                    //surname
+                    // surname
 //        String splitNameTagSpan1 = splitNameTagSpan[1];
 //        System.out.println("\n splitNameTagSpan1 = \n" + splitNameTagSpan1);
-                    //email
+                    // email
 //        Elements listTagDivForFindEmail = pageID.select("div[data-qa=resume-contact-email]");
 //        String emailTagSpan = listTagDivForFindEmail.select("span").text();
-                    //phone
+                    // phone
 //        String listTagSpanForFindPhone = pageID.select("span[data-qa=resume-contact-preferred]").text();
 /////////////////////////////////////////////
 
-                    //dateNow
+                    // dateNow
                     LocalDateTime dateNow = LocalDateTime.now();
-                    //  System.out.println(" \n DateNow = \n" + dateNow);
+                    // System.out.println(" \n DateNow = \n" + dateNow);
 
-
+                    // Вывод значений в консоль.
                     System.out.println("\n ageOnPageResume = " + ageOnPageResume +
                             "\n listTagSpanForFindPosition = " + listTagSpanForFindPosition +
                             "\n siteWebPages = " + siteWebPages +
@@ -117,7 +118,7 @@ public class Parse_Controller {
                             "\n Arrays.toString(wasTime) = " + Arrays.toString(wasTime));
 
 
-                    //Results save
+                    // Results save
                     resume_entity_set = new Resume_Entity();
                     resume_entity_set.setAge(ageOnPageResume);
                     resume_entity_set.setPosition(listTagSpanForFindPosition);
@@ -125,22 +126,21 @@ public class Parse_Controller {
                     resume_entity_set.setLocal_time(dateNow);
                     resume_entity_set.setWas_time(Arrays.toString(wasTime));
 
-                    //без ключа блок с этими данными закрыт
+                    // Без ключа, блок с этими данными закрыт
                     // resume_entity_set.setName(splitNameTagSpan[0]);
                     // resume_entity_set.setSurname(splitNameTagSpan[1]);
                     // resume_entity_set.setEmail(emailTagSpan);
                     // resume_entity_set.setPhone(listTagSpanForFindPhone);
 
-                    //записываем результат
+                    // Записываем результат
                     resume_entity.add(resume_entity_set);
 
                 }
-            }//циклы for
+            }// Закрываются циклы for
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        //сохраняем результат
+        // Сохраняем результат
         startSave(resume_entity);
         return "БД обновлена";
     }
@@ -148,7 +148,7 @@ public class Parse_Controller {
     private void startSave(ArrayList<Resume_Entity> resume_entity) {
         for (int i = 0; i < resume_entity.size(); i++) {
             resume_repo.save(resume_entity.get(i));
-            //System.out.println( "\n get i \n" + resume_entity.get(i).toString());
+            // System.out.println( "\n get i \n" + resume_entity.get(i).toString());
         }
         System.out.println("\n Сохранен \n");
     }

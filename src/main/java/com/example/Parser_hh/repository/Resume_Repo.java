@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Resume_Repo extends CrudRepository<Resume_Entity, Integer> {
-}
+public interface Resume_Repo extends CrudRepository<Resume_Entity, Integer> {}

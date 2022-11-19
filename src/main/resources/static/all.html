@@ -12,14 +12,14 @@
 <br>
 <div class="all">
     <td>
-    <form name="all_bd" method="post" onsubmit = "location.reload(); return false">
-        <button type="submit">Обновить страницу All</button>
-    </form>
+        <form name="all_bd" method="post" onsubmit="location.reload(); return false">
+            <button type="submit">Обновить страницу All</button>
+        </form>
 
-    <br>
-    <form name="all_bd" method="post" onsubmit = "send_update(this); return false">
-        <button type="submit">Обновить БД</button>
-    </form>
+        <br>
+        <form name="all_bd" method="post" onsubmit="send_update(this); return false">
+            <button type="submit">Обновить БД</button>
+        </form>
     <td>
 </div>
 
@@ -31,7 +31,7 @@
     <br><br>
 </div>
 
-    <script>
+<script>
     const parseList = document.getElementById("parseList");
     fetch("/all")
         .then(response => response.json())
@@ -41,7 +41,7 @@
                 col.classList.add("all_border");
                 const td = document.createElement('td');
                 td.classList.add("all_border");
-                td.innerText = item.id + " | " + "Name: " + item.name + " ; Surname: " + item.surname + " ; Age: " + item.age + " ; Phone number: " + item.phone + " ; Email: " + item.email+ " ; Position: " + item.position + " ; Web site resume: " + item.url_site + " ; Local Time: " + item.local_time + " ; Was Time: " + item.was_time;
+                td.innerText = item.id + " | " + "Name: " + item.name + " ; Surname: " + item.surname + " ; Age: " + item.age + " ; Phone number: " + item.phone + " ; Email: " + item.email + " ; Position: " + item.position + " ; Web site resume: " + item.url_site + " ; Local Time: " + item.local_time + " ; Was Time: " + item.was_time;
 
                 col.append(td);
                 parseList.append(col);
