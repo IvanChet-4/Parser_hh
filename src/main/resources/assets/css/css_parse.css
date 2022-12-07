@@ -1,12 +1,3 @@
-.all{text-align: center;}
-
-.all_border{
-    text-align: center;
-    border-top: 1px solid black; /* Линия сверху текста */
-    border-bottom: 1px solid black; /* Линия снизу текста */
-    padding: 5px; /* Поля вокруг текста */
-}
-
 .table-scroll {overflow-x: scroll;}
 
 .main_table{
@@ -15,7 +6,3 @@
 }
 
 .td{text-align: center;}
-
-.button{
-    text-align: center;
-}

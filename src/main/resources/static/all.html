@@ -3,25 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Start and Viewer </title>
-    <link rel="stylesheet" href="/assets/css/css_parse.css">
+    <title> Start parsing and Viewer result </title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/css_parse.css">
 </head>
 
 <body>
 
 <br>
-<div class="all">
-
-        <form name="all_bd" method="post" onsubmit="location.reload(); return false" class="button">
-            <button type="submit"> Вывести все значения из БД на экран </button>
+<div autofocus>
+        <form name="parse_and_write_in_bd" method="post" onsubmit="location.reload(); return false">
+            <input type="button" value="Вывести все значения из БД на экран">
         </form>
-
-        <br>
-
-        <form name="all_bd" method="post" onsubmit="send_update(this); return false" class="button">
-            <button type="submit"> Запустить парсинг, добавить значения в БД </button>
+<br>
+        <form name="viewer_all_result_from_bd" method="post" onsubmit="send_update(this); return false">
+            <input type="button" value="Запустить парсинг, добавить значения в БД">
         </form>
-
 </div>
 
 
@@ -30,21 +26,20 @@
         <table border="1" cellpadding="1" cellspacing="1" class="main_table" id="parseList">
             <tbody>
             <tr>
-                <td colspan="10" style="text-align: center;"><strong>Таблица открытых данных соискателей с сайта hh.ru:</strong></td>
+                <td colspan="10" style="text-align: center"><strong>Таблица открытых данных соискателей с сайта hh.ru:</strong></td>
             </tr>
             <tr>
-                <td style="text-align: center;"><strong>№п/н</strong></td>
-                <td style="text-align: center;"><strong>Имя</strong></td>
-                <td style="text-align: center;"><strong>Фамилия</strong></td>
-                <td style="text-align: center;"><strong>Возраст</strong></td>
-                <td style="text-align: center;"><strong>Телефон</strong></td>
-                <td style="text-align: center;"><strong>E-mail</strong></td>
-                <td style="text-align: center;"><strong>Желаемая должность</strong></td>
-                <td style="text-align: center;"><strong>Web страница резюме</strong></td>
-                <td style="text-align: center;"><strong>Время сбора данных</strong></td>
-                <td style="text-align: center;"><strong>Время последнего визита соискателя</strong></td>
+                <td style="text-align: center"><strong>№п/н</strong></td>
+                <td style="text-align: center"><strong>Имя</strong></td>
+                <td style="text-align: center"><strong>Фамилия</strong></td>
+                <td style="text-align: center"><strong>Возраст</strong></td>
+                <td style="text-align: center"><strong>Телефон</strong></td>
+                <td style="text-align: center"><strong>E-mail</strong></td>
+                <td style="text-align: center"><strong>Желаемая должность</strong></td>
+                <td style="text-align: center"><strong>Web страница резюме</strong></td>
+                <td style="text-align: center"><strong>Время сбора данных</strong></td>
+                <td style="text-align: center"><strong>Время последнего визита соискателя</strong></td>
             </tr>
-
             </tbody>
         </table>
 </div>
@@ -58,6 +53,7 @@
             result.forEach(item => {
 
                 const tr1 = document.createElement('tr');
+                tr1.classList.add("td");
 
                 const td1 = document.createElement('td');
                 td1.classList.add("td");
@@ -122,5 +118,4 @@
 </script>
 
 </body>
-
 </html>
