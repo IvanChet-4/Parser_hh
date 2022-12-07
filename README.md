@@ -39,6 +39,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 -вторая обновляет страницу и выводит все данные из БД.
 
 Версия v1.2 Данная версия отличается от версии v1.1 отображением результатов, теперь результаты выводятся в таблицу.
+
 /all.html результат парсинга (1)
 ![1](https://user-images.githubusercontent.com/104260618/206285379-b76aa8e5-9ac1-4909-b8c2-c1a432483134.jpg)
 
@@ -47,7 +48,8 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 
 
-Версия v1.1 Первая версия.
+//Версия v1.1 Первая версия.
+
 /all.html
 ![1](https://user-images.githubusercontent.com/104260618/202474898-01ddaccf-f596-44f8-8569-ac1eff31cce9.jpg)
 
