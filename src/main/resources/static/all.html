@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>All</title>
+    <title> Start and Viewer </title>
     <link rel="stylesheet" href="/assets/css/css_parse.css">
 </head>
 
@@ -11,25 +11,44 @@
 
 <br>
 <div class="all">
-    <td>
-        <form name="all_bd" method="post" onsubmit="location.reload(); return false">
-            <button type="submit">Обновить страницу All</button>
+
+        <form name="all_bd" method="post" onsubmit="location.reload(); return false" class="button">
+            <button type="submit"> Вывести все значения из БД на экран </button>
         </form>
 
         <br>
-        <form name="all_bd" method="post" onsubmit="send_update(this); return false">
-            <button type="submit">Обновить БД</button>
+
+        <form name="all_bd" method="post" onsubmit="send_update(this); return false" class="button">
+            <button type="submit"> Запустить парсинг, добавить значения в БД </button>
         </form>
-    <td>
+
 </div>
 
+
 <br><br>
-<div class="all_border">
-    <h4>Таблица всех данных:</h4>
-    <br>
-    <div class="all_border" id="parseList"></div>
-    <br><br>
+    <div class="table-scroll">
+        <table border="1" cellpadding="1" cellspacing="1" class="main_table" id="parseList">
+            <tbody>
+            <tr>
+                <td colspan="10" style="text-align: center;"><strong>Таблица открытых данных соискателей с сайта hh.ru:</strong></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><strong>№п/н</strong></td>
+                <td style="text-align: center;"><strong>Имя</strong></td>
+                <td style="text-align: center;"><strong>Фамилия</strong></td>
+                <td style="text-align: center;"><strong>Возраст</strong></td>
+                <td style="text-align: center;"><strong>Телефон</strong></td>
+                <td style="text-align: center;"><strong>E-mail</strong></td>
+                <td style="text-align: center;"><strong>Желаемая должность</strong></td>
+                <td style="text-align: center;"><strong>Web страница резюме</strong></td>
+                <td style="text-align: center;"><strong>Время сбора данных</strong></td>
+                <td style="text-align: center;"><strong>Время последнего визита соискателя</strong></td>
+            </tr>
+
+            </tbody>
+        </table>
 </div>
+
 
 <script>
     const parseList = document.getElementById("parseList");
@@ -37,19 +56,57 @@
         .then(response => response.json())
         .then(result => {
             result.forEach(item => {
-                const col = document.createElement('div');
-                col.classList.add("all_border");
-                const td = document.createElement('td');
-                td.classList.add("all_border");
-                td.innerText = item.id + " | " + "Name: " + item.name + " ; Surname: " + item.surname + " ; Age: " + item.age + " ; Phone number: " + item.phone + " ; Email: " + item.email + " ; Position: " + item.position + " ; Web site resume: " + item.url_site + " ; Local Time: " + item.local_time + " ; Was Time: " + item.was_time;
 
-                col.append(td);
-                parseList.append(col);
+                const tr1 = document.createElement('tr');
+
+                const td1 = document.createElement('td');
+                td1.classList.add("td");
+                td1.innerText = item.id;
+
+                const td2 = document.createElement('td');
+                td2.classList.add("td");
+                td2.innerText = item.name;
+
+                const td3 = document.createElement('td');
+                td3.classList.add("td");
+                td3.innerText = item.surname;
+
+                const td4 = document.createElement('td');
+                td4.classList.add("td");
+                td4.innerText = item.age;
+
+                const td5 = document.createElement('td');
+                td5.classList.add("td");
+                td5.innerText = item.phone;
+
+                const td6 = document.createElement('td');
+                td6.classList.add("td");
+                td6.innerText = item.email;
+
+                const td7 = document.createElement('td');
+                td7.classList.add("td");
+                td7.innerText = item.position;
+
+                const td8 = document.createElement('td');
+                td8.classList.add("td");
+                td8.innerText = item.url_site;
+
+                const td9 = document.createElement('td');
+                td9.classList.add("td");
+                td9.innerText = item.local_time;
+
+                const td10 = document.createElement('td');
+                td10.classList.add("td");
+                td10.innerText = item.was_time;
+
+                tr1.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10);
+                parseList.append(tr1);
                 console.log(item);
 
             })
         });
 </script>
+
 
 <script>
     function send_update(form) {
