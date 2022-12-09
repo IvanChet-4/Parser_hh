@@ -1,6 +1,8 @@
-.table-scroll {overflow-x: scroll;}
+.table-scroll {
+    overflow-x: scroll;
+}
 
-.main_table{
+.main_table {
     text-align: center;
     margin: auto;
 }

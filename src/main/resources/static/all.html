@@ -8,23 +8,21 @@
 </head>
 
 <body>
-
 <br>
 <div autofocus>
-        <form name="parse_and_write_in_bd" method="post" onsubmit="location.reload(); return false">
-            <input type="button" value="Вывести все значения из БД на экран">
-        </form>
+    <form name="parse_and_write_in_bd" method="post" onsubmit="location.reload(); return false">
+        <input type="button" value="Вывести все значения из БД на экран">
+    </form>
 <br>
-        <form name="viewer_all_result_from_bd" method="post" onsubmit="send_update(this); return false">
-            <input type="button" value="Запустить парсинг, добавить значения в БД">
-        </form>
+    <form name="viewer_all_result_from_bd" method="post" onsubmit="send_update(this); return false">
+        <input type="button" value="Запустить парсинг, добавить значения в БД">
+    </form>
 </div>
 
-
 <br><br>
-    <div class="table-scroll">
-        <table border="1" cellpadding="1" cellspacing="1" class="main_table" id="parseList" style="text-align: center">
-            <tbody>
+<div class="table-scroll">
+    <table border="1" cellpadding="1" cellspacing="1" class="main_table" id="parseList" style="text-align: center">
+        <tbody>
             <tr>
                 <td colspan="10"><strong>Таблица открытых данных из анкет соискателей с сайта hh.ru:</strong></td>
             </tr>
@@ -40,71 +38,56 @@
                 <td><strong>Время сбора данных</strong></td>
                 <td><strong>Время последнего визита соискателя</strong></td>
             </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </div>
-
 
 <script>
     const parseList = document.getElementById("parseList");
-    fetch("/all")
-        .then(response => response.json())
-        .then(result => {
-            result.forEach(item => {
+        fetch("/all")
+            .then(response => response.json())
+            .then(result => {
+                result.forEach(item => {
+                    const tr1 = document.createElement('tr');
+                    const td1 = document.createElement('td');
+                    td1.innerText = item.id;
+                    const td2 = document.createElement('td');
+                    td2.innerText = item.name;
+                    const td3 = document.createElement('td');
+                    td3.innerText = item.surname;
+                    const td4 = document.createElement('td');
+                    td4.innerText = item.age;
+                    const td5 = document.createElement('td');
+                    td5.innerText = item.phone;
+                    const td6 = document.createElement('td');
+                    td6.innerText = item.email;
+                    const td7 = document.createElement('td');
+                    td7.innerText = item.position;
+                    const td8 = document.createElement('td');
+                    td8.innerText = item.url_site;
+                    const td9 = document.createElement('td');
+                    td9.innerText = item.local_time;
+                    const td10 = document.createElement('td');
+                    td10.innerText = item.was_time;
 
-                const tr1 = document.createElement('tr');
-
-                const td1 = document.createElement('td');
-                td1.innerText = item.id;
-
-                const td2 = document.createElement('td');
-                td2.innerText = item.name;
-
-                const td3 = document.createElement('td');
-                td3.innerText = item.surname;
-
-                const td4 = document.createElement('td');
-                td4.innerText = item.age;
-
-                const td5 = document.createElement('td');
-                td5.innerText = item.phone;
-
-                const td6 = document.createElement('td');
-                td6.innerText = item.email;
-
-                const td7 = document.createElement('td');
-                td7.innerText = item.position;
-
-                const td8 = document.createElement('td');
-                td8.innerText = item.url_site;
-
-                const td9 = document.createElement('td');
-                td9.innerText = item.local_time;
-
-                const td10 = document.createElement('td');
-                td10.innerText = item.was_time;
-
-                tr1.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10);
-                parseList.append(tr1);
-                console.log(item);
-
-            })
-        });
+                    tr1.append(td1, td2, td3, td4, td5, td6, td7, td8, td9, td10);
+                    parseList.append(tr1);
+                    console.log(item);
+                })
+            });
 </script>
-
 
 <script>
     function send_update(form) {
         const formData = new FormData(form);
-        fetch('/add', {
-            method: "POST",
-            body: formData
-        }).then(response => response.text())
-            .then(result => {
-                console.log(result);
-            })
-    }
-</script>
-
-</body>
+            fetch('/add', {
+                    method: "POST",
+                    body: formData
+                }).then(response => response.text())
+                    .then(result => {
+                    console.log(result);
+                })
+            }
+        </script>
+    </body>
 </html>
