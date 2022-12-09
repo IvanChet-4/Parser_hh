@@ -44,10 +44,12 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 Версия v1.2 Данная версия отличается от версии v1.1 отображением результатов, теперь результаты выводятся в таблицу.
 
 /all.html результат парсинга (1)
-![1](https://user-images.githubusercontent.com/104260618/206285379-b76aa8e5-9ac1-4909-b8c2-c1a432483134.jpg)
+![1](https://user-images.githubusercontent.com/104260618/206422229-3e15a5cb-d490-4c7b-90d5-4c7d2da6ff96.jpg)
+
 
 /all.html результат парсинга (2)
-![2](https://user-images.githubusercontent.com/104260618/206285412-c2436d72-5ae2-456f-8b34-707c962a7d32.jpg)
+![2](https://user-images.githubusercontent.com/104260618/206422276-c34b164b-11ef-4c3c-b490-f0ed096f2d9f.jpg)
+
 
 
 
