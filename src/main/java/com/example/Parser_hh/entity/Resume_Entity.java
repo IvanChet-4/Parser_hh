@@ -22,6 +22,8 @@ public class Resume_Entity {
     String was_time;
 
     public Resume_Entity() { }
+
+    /*Гетеры и сетеры*/
     public int getId() {
         return id;
     }
