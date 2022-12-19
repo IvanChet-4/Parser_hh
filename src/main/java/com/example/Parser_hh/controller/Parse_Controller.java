@@ -20,6 +20,11 @@ import static com.example.Parser_hh.constants.Constants.*;
 import static com.example.Parser_hh.constants.Constants.SITE_URL_ID;
 import static java.lang.Integer.parseInt;
 
+/**
+ * Контроллер в котором происходит
+ * парсинг сайта + сохранения результата в БД
+ * и вывод полученных результатов на страницу all.html
+ * */
 @RestController
 @RequestMapping("/")
 public class Parse_Controller {
@@ -30,13 +35,13 @@ public class Parse_Controller {
     /* Вывод данных из БД на экран при нажатии "Вывести все значения из БД на экран" */
     @GetMapping("all")
     public ResponseEntity getParsers() {
-        ArrayList<Resume_Entity> resume_entities = (ArrayList<Resume_Entity>) resume_repo.findAll();
+        ArrayList < Resume_Entity > resume_entities = (ArrayList < Resume_Entity > ) resume_repo.findAll();
         return ResponseEntity.ok(resume_entities);
     }
 
     /* Код парсинга. Парсинг и запись в БД при нажатии "Запустить парсинг, добавить значения в БД" */
     @PostMapping("add")
-    public String startParse(@ModelAttribute ArrayList<Resume_Entity> resume_entity, @ModelAttribute Resume_Entity resume_entity_set) {
+    public String startParse(@ModelAttribute ArrayList < Resume_Entity > resume_entity, @ModelAttribute Resume_Entity resume_entity_set) {
         try {
 
             /* j - номер страницы, на каждой странице отображено 100 резюме */
@@ -47,7 +52,7 @@ public class Parse_Controller {
                 Document page = Jsoup.parse(url, 7000);
 
                 for (int i = 0; i < Itoe; i++) { // i - можно поставить 100
-                    Element listTagAForFindHref = page.select("a[class=serp-item__title]").get(i);//get(i)
+                    Element listTagAForFindHref = page.select("a[class=serp-item__title]").get(i); //get(i)
                     String attrTagA = listTagAForFindHref.attr("href");
                     // System.out.println("listTagA = \n" + listTagA + "\n attrTagA = \n" + attrTagA);
                     String[] splitAttrTagA = attrTagA.split("/");
@@ -141,7 +146,7 @@ public class Parse_Controller {
     }
 
     /* Сохранение результатов парсинга в БД */
-    private void startSave(ArrayList<Resume_Entity> resume_entity) {
+    private void startSave(ArrayList < Resume_Entity > resume_entity) {
         for (int i = 0; i < resume_entity.size(); i++) {
             resume_repo.save(resume_entity.get(i));
             // System.out.println( "\n get i \n" + resume_entity.get(i).toString());
