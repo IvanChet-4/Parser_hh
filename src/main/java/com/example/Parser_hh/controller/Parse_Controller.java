@@ -21,9 +21,9 @@ import static com.example.Parser_hh.constants.Constants.SITE_URL_ID;
 import static java.lang.Integer.parseInt;
 
 /**
- * Контроллер в котором происходит
- * парсинг сайта + сохранения результата в БД
- * и вывод полученных результатов на страницу all.html
+ * Контроллер, в котором происходит:
+ * -парсинг сайта + сохранение результатов в БД
+ * -вывод полученных результатов на страницу all.html
  * */
 @RestController
 @RequestMapping("/")
